@@ -1,0 +1,43 @@
+<main class="form-signin w-100 m-auto">
+  <form>
+    <h1 class="h3 mb-3 fw-normal text-center">Create User Account</h1>
+    <div class="form-floating my-3">
+      <div class=" form-floating">
+        <input type="text" [(ngModel)]="name" name="name" class="form-control my-2" id="floatingInput"
+          placeholder="name">
+        <label for="floatingInput">Name</label>
+      </div>
+      <div class="col form-floating">
+        <input type="email" [(ngModel)]="email" name="email" class="form-control my-2" placeholder="name@example.com">
+        <label for="floatingInput">Email address</label>
+      </div>
+    </div>
+    <div class="my-3">
+      <input class="form-check-input" type="radio" name="accountType" id="radio1" [(ngModel)]="accountType"
+        value="Free User" checked>
+      <label class="form-check-label mx-3" for="flexRadioDefault1">
+        Free User
+      </label>
+      <input class="form-check-input" type="radio" name="accountType" id="radio2" [(ngModel)]="accountType"
+        value="Unlimited User">
+      <label class="form-check-label mx-3" for="flexRadioDefault2">
+        Unlimited User
+      </label>
+    </div>
+    <div class="form-floating row my-3">
+      <div class=" col ">
+        <input type="password" [(ngModel)]="password" name="password" class="form-control my-2" id="floatingPassword"
+          class="form-control" placeholder="Password">
+      </div>
+      <div class="col">
+        <input type="password" [(ngModel)]="confirmPassword" class="form-control my-2" name="confirmPassword"
+          class="form-control" placeholder="Confirm Password">
+      </div>
+    </div>
+    <div class="row my-3">
+      <button class="col btn btn-primary w-100 py-2 mx-3" type="submit" (click)="createAccount()">Create
+        Account</button>
+      <button class="col btn btn-primary w-100 py-2 mx-3" (click)="goToLogin()">Back to Login</button>
+    </div>
+  </form>
+</main>

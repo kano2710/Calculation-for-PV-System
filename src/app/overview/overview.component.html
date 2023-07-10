@@ -1,0 +1,60 @@
+<app-navbar></app-navbar>
+<h1 class="text-center my-2">Projects Dashboard - Map</h1>
+<div class="d-flex justify-content-center">
+  <div class="btn-group" role="group" aria-label="Project Buttons">
+    <button *ngFor="let projectName of uniqueProjectNames" class="btn btn-primary mx-1 my-2"
+      (click)="toggleTable(projectName)">{{ projectName }}</button>
+  </div>
+</div>
+
+<div class="container">
+  <table class="table mt-3" *ngIf="selectedProjectName">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>City</th>
+        <th>Latitude</th>
+        <th>Longitude</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let location of getLocationsByProject(selectedProjectName)">
+        <ng-container *ngIf="location.id !== editingLocationId; else editField">
+          <td>{{ location.name }}</td>
+          <td>{{ location.city }}</td>
+          <td>{{ location.latitude }}</td>
+          <td>{{ location.longitude }}</td>
+        </ng-container>
+        <ng-template #editField>
+          <td>{{location.name}}</td>
+          <td><input class="form-control" type="text" [(ngModel)]="location.city"
+              (ngModelChange)="onCityChange($event)"></td>
+          <td><input class="form-control" type="text" [(ngModel)]="location.latitude" disabled></td>
+          <td><input class="form-control" type="text" [(ngModel)]="location.longitude" disabled></td>
+        </ng-template>
+        <td>
+          <div class="d-flex justify-content-start">
+            <button class="btn btn-primary mx-2" *ngIf="location.id !== editingLocationId"
+              (click)="editLocation(location.id)">Edit</button>
+            <button class="btn btn-primary mx-2" *ngIf="location.id === editingLocationId"
+              (click)="saveLocation(location)">Save</button>
+            <button class="btn btn-danger" (click)="deleteLocation(location.id)">Delete</button>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-lg-8">
+      <div id="map"></div>
+    </div>
+  </div>
+</div>
+
+<ng-template #popupTemplate let-location>
+  <div [innerHTML]="createPopupContent(location.id)"></div>
+</ng-template>

@@ -1,0 +1,24 @@
+<app-nabar-company></app-nabar-company>
+<div class="container">
+    <h2>Add Product</h2>
+    <form #projectForm="ngForm">
+        <div class="row my-2">
+            <label class="mx-4 text-20 col-md-3">Product Name:</label>
+            <input class="form-control w-50 col-md-3" type="text" [(ngModel)]="name" name="name" required>
+        </div>
+        <div class="row my-2">
+            <label class="mx-4 text-20 col-md-3">Rating at Standard Test Conditions:</label>
+            <textarea class="form-control w-50 h-100 col-md-3" type="text" [(ngModel)]="description1"
+                name="description1" required></textarea>
+
+        </div>
+        <div class="row my-2">
+            <label class="mx-4 text-20 col-md-3">Rating at Nominal Operating Cell Temperature of 45 C:</label>
+            <textarea class="form-control w-50 h-100 col-md-3" type="text" [(ngModel)]="description2"
+                name="description2" required></textarea>
+        </div>
+        <div lass="d-flex flex-row">
+            <button class="btn btn-primary w-10 py-1 mx-4" (click)="createProject()">Create Product</button>
+        </div>
+    </form>
+</div>

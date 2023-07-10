@@ -1,0 +1,77 @@
+<app-navbar></app-navbar>
+<div class="my-3">
+    <button class="btn btn-primary w-10 py-1 mx-1" (click)="toggleCurrentProject()">Current Project</button>
+    <button class="btn btn-primary w-10 py-1 mx-1" (click)="toggleCompletedProject()">Completed Project</button>
+</div>
+<div class="my-3" *ngIf="showCurrentProject">
+
+    <button *ngFor="let projectName of uniqueProjectNames" class="btn btn-primary w-10 py-1 mx-1"
+        (click)="toggleTable(projectName)">{{ projectName }}</button>
+    <div *ngFor="let projectName of uniqueProjectNames">
+        <table class="table" *ngIf="selectedProjectName === projectName">
+            <thead class="align-middle">
+                <tr *ngFor="let location of getLocationsByProject(selectedProjectName)">
+                    <td>{{ location.city }}</td>
+                    <td>
+                        <button class="btn btn-primary w-10 py-1 mx-1" (click)="toggleSync(location.id)">Sync</button>
+                        <span *ngIf="location.synced">{{ location.powerOutput }} kWh</span>
+                    </td>
+                    <td class="w-25">
+                        <mat-form-field>
+                            <input matInput [matDatepicker]="picker" placeholder="DD.MM.YYYY" [min]="minStartDate"
+                                [max]="maxEndDate" [(ngModel)]="location.startDate"
+                                (dateChange)="onStartDateChange($event, location)">
+                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                            <mat-datepicker #picker></mat-datepicker>
+                        </mat-form-field>
+                    </td>
+                    <td class="w-25">
+                        <mat-form-field>
+                            <input matInput [matDatepicker]="endDatePicker" placeholder="DD.MM.YYYY"
+                                [min]="location.startDate" [max]="getEndDate(location)" [value]="getEndDate(location)"
+                                disabled>
+                            <mat-datepicker-toggle matSuffix [for]="endDatePicker"></mat-datepicker-toggle>
+                            <mat-datepicker #endDatePicker></mat-datepicker>
+                        </mat-form-field>
+                    </td>
+                    <td>
+                        <button class="btn btn-primary w-10 py-1 mx-1" (click)="fetchReportData(location.id)">Generate
+                            Report</button>
+                    </td>
+
+                </tr>
+            </thead>
+        </table>
+    </div>
+</div>
+
+
+<div class="my-3" *ngIf="showCompletedProject  && projectNamesArray.length > 0">
+    <button class="btn btn-primary w-10 py-1 mx-1" *ngFor="let projectName1 of projectNamesArray"
+        (click)="fatchCompletedProjectData()" (click)="toggleTable1(projectName1)">{{ projectName1 }}</button>
+    <div *ngFor="let projectName1 of uniqueProjectNames1">
+        <table class="table" *ngIf="selectedProjectName1 === projectName1">
+            <thead class="align-middle">
+                <tr *ngFor="let location1 of getLocationsByProject1(selectedProjectName1)">
+                    <td>{{ location1.city }}</td>
+                    <td>
+                        <button class="btn btn-primary w-10 py-1 mx-1" (click)="showReport(location1)">{{location1.image
+                            ? 'Hide Report' : 'Show Report'}}</button>
+                    </td>
+                </tr>
+            </thead>
+        </table>
+    </div>
+
+</div>
+<div class="card">
+    <div *ngFor="let location1 of locations1">
+        <img *ngIf="location1.image" [src]="location1.image" class="responsive-image" alt="Report Image">
+    </div>
+</div>
+
+<div>
+    <div>
+        <canvas #chartCanvas></canvas>
+    </div>
+</div>

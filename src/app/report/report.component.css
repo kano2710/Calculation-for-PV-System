@@ -1,0 +1,10 @@
+.button-row {
+    display: flex;
+    gap: 10px;
+  }
+
+  .responsive-image {
+    max-width: 100%;
+    height: auto;
+  }
+  

@@ -1,0 +1,34 @@
+<app-nabar-company></app-nabar-company>
+<h1 class="">Products</h1>
+<table class="table">
+  <thead class="text-lg-left">
+    <tr>
+      <th>Name</th>
+      <th>Rating at Standard Test Conditions(1000W/m^2, AM 1.5, 25 C)</th>
+      <th>Rating at Nominal Operating Cell Temperature of 45 C</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let product of products">
+      <ng-container *ngIf="product.id !== editingProductId; else editField">
+        <td>{{ product.name }}</td>
+        <td>{{ product.description1 }}</td>
+        <td>{{ product.description2 }}</td>
+      </ng-container>
+      <ng-template #editField>
+        <td><textarea class="w-100 h-100" rows="4" type="text" [(ngModel)]="product.name"> </textarea></td>
+        <td><textarea class="w-100 h-100" rows="4" type="text" [(ngModel)]="product.description1"></textarea></td>
+        <td><textarea class="w-100 h-100" rows="4" type="text" [(ngModel)]="product.description2"></textarea></td>
+      </ng-template>
+      <td class="col-md-2">
+        <div class="row">
+          <button class=" btn btn-primary mx-1 my-1" *ngIf="product.id !== editingProductId"
+            (click)="editProduct(product.id)">Edit</button>
+          <button class=" btn btn-primary mx-1 my-1" *ngIf="product.id === editingProductId"
+            (click)="saveProduct(product)">Save</button>
+          <button class=" btn btn-danger mx-1 my-1" (click)="deleteProduct(product.id)">Delete</button>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>

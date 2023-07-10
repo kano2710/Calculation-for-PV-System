@@ -1,0 +1,28 @@
+<app-navbar></app-navbar>
+
+<h2>Profile</h2>
+<form class="">
+  <fieldset [disabled]="updating">
+    <div class="row my-2">
+      <label class="mx-4 text-20 col-md-2">Name:</label>
+      <input class="form-control w-25 col-md-2" type="text" [(ngModel)]="user.name" name="name" required>
+    </div>
+    <div class="row my-2">
+      <label class="mx-4 text-20 col-md-2">Email:</label>
+      <input class="form-control w-25 col-md-2" type="email" [(ngModel)]="user.email" name="email" disabled>
+    </div>
+    <div class="row my-2">
+      <label class="mx-4 text-20 col-md-2">Password:</label>
+      <input class="form-control w-25 col-md-2" type="password" [(ngModel)]="user.password" name="password" required>
+    </div>
+    <div class="row my-2">
+      <label class="mx-4 text-20 col-md-2">Account Type:</label>
+      <input class="form-control w-25 col-md-2" type="text" [(ngModel)]="user.accountType" name="accountType" disabled>
+    </div>
+    <div class="d-flex flex-row">
+      <button class="btn btn-primary w-10 py-1 mx-1" (click)="updateProfile()" [disabled]="updating">Update</button>
+      <button class="btn btn-danger w-10 py-1 mx-1" (click)="deleteAccount()" [disabled]="updating">Delete
+        Account</button>
+    </div>
+  </fieldset>
+</form>

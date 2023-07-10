@@ -1,0 +1,6 @@
+<h2 mat-dialog-title>Confirmation</h2>
+<div mat-dialog-content>{{ message }}</div>
+<div mat-dialog-actions>
+  <button class="btn btn-primary mx-2" mat-button (click)="closeDialog(false)">Cancel</button>
+  <button class="btn btn-danger mx-2" color="warn" (click)="closeDialog(true)">Delete</button>
+</div>

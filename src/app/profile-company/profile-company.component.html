@@ -1,0 +1,24 @@
+<app-nabar-company></app-nabar-company>
+
+<h2>Profile</h2>
+<form class="">
+  <fieldset [disabled]="updating">
+    <div class="row my-2">
+      <label class="mx-4 text-20 col-md-2">Name:</label>
+      <input class="form-control w-25 col-md-2" type="text" [(ngModel)]="company.name" name="name" required>
+    </div>
+    <div class="row my-2">
+      <label class="mx-4 text-20 col-md-2">Email:</label>
+      <input class="form-control w-25 col-md-2" type="email" [(ngModel)]="company.email" name="email" disabled>
+    </div>
+    <div class="row my-2">
+      <label class="mx-4 text-20 col-md-2">Password:</label>
+      <input class="form-control w-25 col-md-2" type="password" [(ngModel)]="company.password" name="password" required>
+    </div>
+    <div lass="d-flex flex-row">
+      <button class="btn btn-primary w-10 py-1 mx-1" (click)="updateProfile()" [disabled]="updating">Update</button>
+      <button class="btn btn-danger w-10 py-1 mx-1" (click)="deleteAccount()" [disabled]="updating">Delete
+        Account</button>
+    </div>
+  </fieldset>
+</form>

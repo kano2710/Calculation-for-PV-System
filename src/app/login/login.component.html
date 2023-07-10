@@ -1,0 +1,20 @@
+<main class="form-signin w-100 m-auto">
+  <form>
+    <h1 class="h3 mb-3 fw-normal text-center">User Login</h1>
+    <div class="form-floating">
+      <input type="email" [(ngModel)]="email" name="email" class="form-control my-2" id="floatingInput"
+        placeholder="name@example.com">
+      <label for="floatingInput">Email address</label>
+    </div>
+    <div class="form-floating">
+      <input type="password" [(ngModel)]="password" name="password" class="form-control my-2" id="floatingPassword"
+        placeholder="Password">
+      <label for="floatingPassword">Password</label>
+    </div>
+    <div class="row mb-3">
+      <button class="col btn btn-primary w-100 py-2 mx-1" type="submit" (click)="login()">Login</button>
+      <button class="col btn btn-primary w-100 py-2 mx-1" (click)="goToCreateAccount()">Create Account</button>
+    </div>
+    <button class="btn btn-primary w-100 py-2" (click)="goToCompanyAccount()">Company Login</button>
+  </form>
+</main>

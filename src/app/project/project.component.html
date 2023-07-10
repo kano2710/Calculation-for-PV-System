@@ -1,0 +1,54 @@
+<app-navbar></app-navbar>
+<div class="container my-3">
+  <div class="row justify-content-center">
+    <div class="col-10">
+      <div class="card" style="width: 100%;">
+        <div class="card-body">
+          <div class="container">
+            <div class="row my-2">
+              <h3 class="col">Add Your Project</h3>
+            </div>
+            <form #projectForm="ngForm">
+              <div class="row">
+                <div class="col-12 col-md-8 my-2">
+                  <input type="text" [(ngModel)]="name" name="name" class="form-control" id="floatingInput"
+                    placeholder="Project Name" required>
+                </div>
+                <div class="col-12 col-md-4 my-2 d-flex align-items-center justify-content-md-center">
+                  <button class="btn btn-primary" (click)="addProjectName($event, projectForm)">Add Project</button>
+                </div>
+              </div>
+            </form>
+          </div>
+
+          <div class="container">
+            <div class="row my-2">
+              <h3 class="col-12">Projects</h3>
+            </div>
+            <ng-container *ngFor="let project of projects | unique:'name'; let i = index">
+              <div class="card mb-3">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-sm-6 col-md-6 col-lg-6 col-xl-6 text-20">{{ project.name }}</div>
+                    <div class="col-sm-6 col-md-6 col-lg-6 col-xl-6 d-flex align-items-center justify-content-sm-end">
+                      <button class="btn btn-primary py-2 my-2" (click)="toggleProjectDisplay(i, project)">
+                        {{ displayProjectIndex === i ? 'Hide' : 'Add Product' }}
+                      </button>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-12" *ngIf="displayProjectIndex === i">
+                      <app-project-add [projectName]="selectedProject?.name"
+                        (projectAdded)="addProject($event, projectForm)"></app-project-add>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </ng-container>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,75 @@
+<div class="container">
+  <form #projectForm="ngForm">
+    <div class="row my-2">
+      <label class="mx-4 text-20 col-md-2">Project Name:</label>
+      <input class="form-control w-25 col-md-2" type="text" [(ngModel)]="projectName" name="projectName" disabled>
+    </div>
+    <div class="row my-2">
+      <label class="mx-4 text-20 col-md-2">City/Product Name:</label>
+      <input class="form-control w-25 col-md-2" type="text" [(ngModel)]="city" name="city"
+        (ngModelChange)="onCityChange($event)" required>
+    </div>
+    <div class="row my-2">
+      <label class="mx-4 text-20 col-md-2">Power Peak:</label>
+      <input class="form-control w-25 col-md-2" type="number" value="{{powerPeak}}" name="powerPeak" disabled>
+
+    </div>
+    <div class="row my-2">
+      <label class="mx-4 text-20 col-md-2">Orientation:</label>
+      <input class="form-control w-25 col-md-2" type="text" value="S" name="orientation" disabled>
+
+    </div>
+    <div class="row my-2">
+      <label class="mx-4 text-20 col-md-2">Tilt:</label>
+      <input class="form-control w-25 col-md-2" type="text" value="30.00&#176;" name="tilt" disabled>
+
+    </div>
+    <div class="row my-2">
+      <label class="mx-4 text-20 col-md-2">Area:</label>
+      <input class="form-control w-25 col-md-2" type="text" value="10.00 &#13217;" name="area" disabled>
+
+    </div>
+    <div class="row my-2">
+      <label class="mx-4 text-20 col-md-2">Longitude:</label>
+      <input class="form-control w-25 col-md-2" type="text" value="{{longitude}}" disabled>
+
+    </div>
+    <div class="row my-2">
+      <label class="mx-4 text-20 col-md-2">Latitude:</label>
+      <input class="form-control w-25 col-md-2" type="text" value="{{latitude}}" disabled>
+
+    </div>
+    <div class="row my-2">
+      <label class="mx-4 text-20 col-md-2">Clouds:</label>
+      <input class="form-control w-25 col-md-2" type="text" value="{{clouds}}" name="clouds" disabled>
+
+    </div>
+    <div class="row my-2">
+      <label class="mx-4 text-20 col-md-2">System Loss:</label>
+      <input class="form-control w-25 col-md-2" type="text" value="14%" name="systemLoss" disabled>
+
+    </div>
+  </form>
+</div>
+
+<div class="container">
+  <table class="table">
+    <thead class="align-middle">
+      <tr>
+        <th scope="col">Add</th>
+        <th scope="col">Name</th>
+        <th scope="col">Rating at Standard Test Conditions (1000W/m^2, AM 1.5, 25 C)</th>
+        <th scope="col">Rating at Nominal Operating Cell Temperature of 45 C (800W/m^2, 20 C Air Temperature, AM 1.5,
+          1m/s Wind Speed)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of project">
+        <th scope="row"><button class="btn btn-primary py-2" (click)="addProject(item, projectForm)">Add</button></th>
+        <td>{{item.name}}</td>
+        <td>{{item.description1}}</td>
+        <td>{{item.description2}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
